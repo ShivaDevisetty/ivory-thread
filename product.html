@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Label Ishaani</title>
+<link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Poppins:wght@400;500;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="site-header"></div>
+
+<main class="wrap" id="pdpRoot">
+  <!-- filled in by js/product.js from js/data.js -->
+</main>
+
+<div class="modal" id="sizeModal" role="dialog" aria-modal="true" aria-labelledby="sizeTitle">
+  <div class="modal-box">
+    <button class="modal-close" id="sizeClose" aria-label="Close">×</button>
+    <h3 id="sizeTitle">Size chart (inches)</h3>
+    <table id="sizeTable"></table>
+    <p>Between sizes? Message us on WhatsApp with your measurements and we'll help you pick.</p>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/product.js"></script>
+</body>
+</html>

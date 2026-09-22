@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Label Ishaani | Handcrafted Indian Wear</title>
+<meta name="description" content="Label Ishaani — handcrafted Indian wear. Order on WhatsApp.">
+<link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Poppins:wght@400;500;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="site-header"></div>
+
+<main>
+  <!-- ============ HERO (edit slide text & images here) ============ -->
+  <section class="hero" aria-label="Featured">
+    <div class="slides" id="slides">
+      <div class="slide">
+        <div class="slide-text">
+          <h1>NEW<br>DROPS</h1>
+          <div class="price-tag">from ₹2,100</div><br>
+          <a href="shop.html?cat=new" class="shop-now">SHOP NOW</a>
+        </div>
+        <div class="promo">DM TO ORDER</div>
+        <div class="strip">
+          <div><img src="images/products/ivory-peplum-1.jpg" alt="" onerror="this.remove()"></div>
+          <div><img src="images/products/ivory-dress-1.jpg" alt="" onerror="this.remove()"></div>
+          <div><img src="images/products/plum-lehenga-1.jpg" alt="" onerror="this.remove()"></div>
+          <div></div>
+        </div>
+        <div class="slide-model"><img src="images/hero/hero-1.png" alt="Model wearing Label Ishaani" onerror="this.src='images/placeholder-model.svg'"></div>
+      </div>
+
+      <div class="slide">
+        <div class="slide-text">
+          <h1>IVORY<br>EDIT</h1>
+          <div class="price-tag">hand embroidered</div><br>
+          <a href="shop.html?cat=new" class="shop-now">SHOP NOW</a>
+        </div>
+        <div class="promo">NEW THIS SEASON</div>
+        <div class="strip">
+          <div><img src="images/products/ivory-dress-2.jpg" alt="" onerror="this.remove()"></div>
+          <div><img src="images/products/ivory-peplum-2.jpg" alt="" onerror="this.remove()"></div>
+          <div></div><div></div>
+        </div>
+        <div class="slide-model"><img src="images/hero/hero-2.png" alt="Model wearing Label Ishaani" onerror="this.src='images/placeholder-model.svg'"></div>
+      </div>
+
+      <div class="slide">
+        <div class="slide-text">
+          <h1>COMING<br>SOON</h1>
+          <div class="price-tag">plum &amp; emerald</div><br>
+          <a href="product.html?id=plum-emerald-lehenga" class="shop-now">TAKE A LOOK</a>
+        </div>
+        <div class="promo">LEHENGA DROP</div>
+        <div class="strip">
+          <div><img src="images/products/plum-lehenga-2.jpg" alt="" onerror="this.remove()"></div>
+          <div></div><div></div><div></div>
+        </div>
+        <div class="slide-model"><img src="images/hero/hero-3.png" alt="Model wearing Label Ishaani" onerror="this.src='images/placeholder-model.svg'"></div>
+      </div>
+    </div>
+    <button class="arrow prev" id="heroPrev" aria-label="Previous slide"></button>
+    <button class="arrow next" id="heroNext" aria-label="Next slide"></button>
+    <div class="dots" id="heroDots"></div>
+  </section>
+
+  <!-- ============ SHOP BY CATEGORY ============ -->
+  <section class="section">
+    <div class="wrap">
+      <h2 class="section-title">SHOP BY CATEGORY</h2>
+      <div class="cats" id="homeCats"></div>
+      <div class="rail-wrap" id="catRailWrap">
+        <div class="rail" id="catRail"></div>
+        <button class="rail-btn prev" aria-label="Scroll left"></button>
+        <button class="rail-btn next" aria-label="Scroll right"></button>
+      </div>
+      <p class="center" style="margin-top:30px"><a class="btn-dark" id="viewAll" href="shop.html">VIEW ALL</a></p>
+    </div>
+  </section>
+
+  <!-- ============ SHOP BY COLLECTION ============ -->
+  <section class="section">
+    <div class="wrap">
+      <h2 class="section-title">SHOP BY COLLECTION</h2>
+      <div class="collections" id="collections"></div>
+    </div>
+  </section>
+
+  <!-- ============ REVIEWS ============ -->
+  <section class="section reviews" id="reviewsSection">
+    <div class="wrap">
+      <h2 class="section-title">WHAT OUR CUSTOMERS SAY?</h2>
+      <div class="rail-wrap" id="reviewRailWrap">
+        <div class="rail" id="reviewRail"></div>
+        <button class="rail-btn prev" aria-label="Scroll left"></button>
+        <button class="rail-btn next" aria-label="Scroll right"></button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>
