@@ -5,7 +5,7 @@
 
 const CONFIG = {
   brand: "Label Ishaani",
-  whatsapp: "91XXXXXXXXXX",          // country code + number, no "+" or spaces
+  whatsapp: "917989313132",           // country code + number, no "+" or spaces
   instagram: "labelishaani",
   email: "",                          // optional, e.g. "hello@labelishaani.com"
   about: "Handcrafted Indian wear, made in small batches. Every order is placed and confirmed personally on WhatsApp."
