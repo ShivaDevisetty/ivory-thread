@@ -223,6 +223,10 @@ function renderFooter() {
         </ul></div>
         <div><h4>Company</h4><ul>
           <li><a href="${IG_URL}" target="_blank" rel="noopener">About Us</a></li>
+          ${CONFIG.owner ? `<li>${esc(CONFIG.owner)}</li>` : ""}
+          ${CONFIG.phoneDisplay ? `<li><a href="tel:+${CONFIG.whatsapp}">${esc(CONFIG.phoneDisplay)}</a></li>` : ""}
+          ${CONFIG.address ? `<li>${esc(CONFIG.address)}</li>` : ""}
+          ${CONFIG.website ? `<li><a href="${esc(CONFIG.website)}">${esc(CONFIG.website.replace(/^https?:\/\//, "").replace(/\/$/, ""))}</a></li>` : ""}
           ${CONFIG.email ? `<li><a href="mailto:${CONFIG.email}">${CONFIG.email}</a></li>` : ""}
         </ul></div>
       </div>
