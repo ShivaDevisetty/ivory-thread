@@ -1,12 +1,13 @@
 # Label Ishaani — website
 
 A free static shop site for **Label Ishaani** (Instagram: @labelishaani).
+Live at **https://labelishaani.dpdns.org**
 No backend and no payment gateway: every order goes to WhatsApp or an Instagram DM.
 
 ## Pages
 | File | What it is |
 |------|------------|
-| `index.html` | Home: hero slider, shop by category, shop by collection, customer reviews |
+| `index.html` | Home: announcement ticker, hero slider, shop by category, shop by collection, brand story, customer reviews |
 | `shop.html` | All products with category filter + sort. `shop.html?cat=dresses`, `shop.html?cat=wishlist` |
 | `product.html` | Product page. `product.html?id=ivory-fit-flare-dress` |
 | `404.html` | Redirects broken links to home |
@@ -17,6 +18,9 @@ No backend and no payment gateway: every order goes to WhatsApp or an Instagram 
 - **Logo**: `images/logo-circle.png` (header, footer, hero, empty pages), `images/favicon.png`, `images/apple-touch-icon.png`
 - **Available vs coming soon**: set `status` to `"available"` or `"soon"`. Coming-soon pieces also carry the `"soon"` category so they show under Coming Soon.
 - **Products**: add/edit in `PRODUCTS`. Product pages are generated automatically.
+- **Announcement ticker**: `CONFIG.announcements` (list of messages that scroll across the top bar on every page; tapping it opens the Instagram DM). Set it to `[]` to hide the bar.
+- **Brand story** (home page card): `BRAND_STORY` in `js/data.js`. Delete the constant to hide the section. The footer blurb reuses its second lead line.
+- **Prices**: `price` in each product (in ₹); use `null` for coming-soon pieces.
 - **Collections tiles**, **customer reviews**, **size chart**, **perks**: same file.
 - **Colours / fonts**: top of `css/style.css` (`:root`).
 - **Hero slider text**: in `index.html`.
@@ -40,7 +44,10 @@ This is a plain static site, so it works directly from GitHub Pages. The include
 2. Upload the contents of this folder to the repository root. Keep `index.html`, `404.html`, `css/`, `js/`, and `images/` at the top level.
 3. In the repository, open **Settings → Pages**.
 4. Set **Source** to **Deploy from a branch**, select `main` and `/ (root)`, then click **Save**.
-5. After deployment finishes, open `https://<your-username>.github.io/labelishaani/`.
+5. After deployment finishes, the site is available at the GitHub Pages address, or at the custom domain below.
+
+### Custom domain
+The site uses `labelishaani.dpdns.org` (a free DigitalPlat domain). The `CNAME` file in the repo root holds the domain, so keep it. DNS points the domain at GitHub Pages, and the domain is also set under **Settings → Pages → Custom domain**.
 
 Before publishing, replace the WhatsApp placeholder, sample reviews, product specifications, and image files in `js/data.js` and `images/`.
 

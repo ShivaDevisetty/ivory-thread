@@ -208,7 +208,7 @@ function renderFooter() {
       <div class="foot">
         <div>
           ${brandLogo()}
-          <p class="foot-about">${esc(BRAND_STORY.lead[1])} Handcrafted in small batches. Order on WhatsApp or Instagram.</p>
+          <p class="foot-about">${typeof BRAND_STORY !== "undefined" ? esc(BRAND_STORY.lead[1]) + " " : ""}Handcrafted in small batches. Order on WhatsApp or Instagram.</p>
         </div>
         <div><h4>Help</h4><ul>
           <li><a href="${waUrl(`Hi ${CONFIG.brand}! I'd like to track my order.`)}" target="_blank" rel="noopener">Track Order</a></li>
