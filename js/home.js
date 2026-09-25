@@ -47,7 +47,7 @@
   function show(cat) {
     const list = PRODUCTS.filter(p => cat === "all" || p.cats.includes(cat));
     rail.innerHTML = list.length ? list.map(productCard).join("")
-      : `<p class="empty">New pieces for this category are on the way. Follow @${CONFIG.instagram} for the drop.</p>`;
+      : `<div class="empty">${logoMark("lg")}<p>New pieces for this category are on the way. Follow <a href="${IG_URL}" target="_blank" rel="noopener">@${CONFIG.instagram}</a> for the drop.</p></div>`;
     rail.scrollLeft = 0;
     const label = CATEGORIES.find(c => c.id === cat).label;
     viewAll.href = cat === "all" ? "shop.html" : `shop.html?cat=${cat}`;
@@ -78,7 +78,7 @@ document.getElementById("collections").innerHTML = COLLECTIONS.map(c => `
     return `
     <article class="review">
       <div class="review-img">${img(r.image, "Photo shared by " + r.name)}
-        <a class="review-ig" href="https://instagram.com/${CONFIG.instagram}" target="_blank" rel="noopener" aria-label="Instagram">${ICON.ig}</a></div>
+        <a class="review-ig" href="${IG_URL}" target="_blank" rel="noopener" aria-label="Instagram">${ICON.ig}</a></div>
       <div class="review-body">
         <div class="review-head"><strong>${esc(r.name)}</strong>
           <span class="stars" aria-label="${r.rating} out of 5">${"★".repeat(r.rating)}${"☆".repeat(5 - r.rating)}</span></div>

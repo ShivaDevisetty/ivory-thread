@@ -7,7 +7,7 @@
   const p = byId(id);
 
   if (!p) {
-    root.innerHTML = `<div class="notfound"><h1>This piece isn't available</h1>
+    root.innerHTML = `<div class="notfound">${logoMark("lg")}<h1>This piece isn't available</h1>
       <p style="color:var(--muted);margin-bottom:24px">It may have sold out or the link is incorrect.</p>
       <a class="btn-dark" href="shop.html">Browse the collection</a></div>`;
     return;
@@ -40,7 +40,7 @@
         ${images.map((src, i) => `<button data-i="${i}" aria-label="Image ${i + 1}">${img(src, "")}</button>`).join("")}
       </div>
       <div class="lookbook">
-        <a href="https://instagram.com/${CONFIG.instagram}" target="_blank" rel="noopener">SEE IT<br>STYLED ${ICON.go}</a>
+        <a href="${IG_URL}" target="_blank" rel="noopener">${logoMark("sm")}<span>SEE IT<br>STYLED</span></a>
       </div>
     </div>
 
@@ -53,7 +53,7 @@
       <div class="p-price">${fmt(p.price)}</div>
       <div class="meta-row"><span>${p.price ? "Inclusive of all taxes" : ""}</span><span>SKU: <b>${esc(p.sku)}</b></span></div>
 
-      <div class="notice">${soon ? "Launching soon — message us to be notified first." : "Order in one tap on WhatsApp. We'll confirm size, delivery and payment with you."}</div>
+      <div class="notice">${soon ? "Launching soon. Message us on WhatsApp or Instagram to be told first." : "Order on WhatsApp or Instagram. We'll confirm size, delivery and payment with you."}</div>
 
       ${p.sizes.length ? `
       <div class="opt-label"><span>Size</span><button id="sizeChartBtn">Size Chart</button></div>
@@ -74,7 +74,10 @@
       </div>
 
       <div class="cta-row">
-        <button class="btn-wa" id="orderBtn">${ICON.wa} ${soon ? "Notify me on WhatsApp" : "Order on WhatsApp"}</button>
+        <div class="cta-pair">
+          <button class="btn-wa" id="orderBtn">${ICON.wa} ${soon ? "Notify me on WhatsApp" : "Order on WhatsApp"}</button>
+          <button class="btn-ig" id="igOrderBtn">${ICON.ig} ${soon ? "Notify me on Instagram" : "Order on Instagram"}</button>
+        </div>
         <button class="btn-outline" id="wishBtn">${WISH.includes(p.id) ? "Saved to wishlist" : "Add to wishlist"}</button>
       </div>
 
@@ -143,6 +146,11 @@
     }
     if (p.sizes.length && !size) { err.textContent = "Select a size to order."; sizesEl.querySelector("button").focus(); return; }
     window.open(waUrl(orderMessage(p, size, colorName)), "_blank");
+  };
+  document.getElementById("igOrderBtn").onclick = () => {
+    if (soon) { orderOnInstagram(`Hi ${CONFIG.brand}! Please let me know when the ${p.name} launches.\n${location.href}`); return; }
+    if (p.sizes.length && !size) { err.textContent = "Select a size to order."; sizesEl.querySelector("button").focus(); return; }
+    orderOnInstagram(orderMessage(p, size, colorName));
   };
   const wishBtn = document.getElementById("wishBtn");
   wishBtn.onclick = () => {

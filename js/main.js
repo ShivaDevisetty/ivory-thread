@@ -7,6 +7,13 @@ const PLACEHOLDER = "images/placeholder.svg";
 const fmt = n => (n == null ? "Price on launch" : "₹ " + n.toLocaleString("en-IN") + ".00");
 const byId = id => PRODUCTS.find(p => p.id === id);
 const waUrl = msg => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;
+const IG_URL = CONFIG.instagramUrl || `https://www.instagram.com/${CONFIG.instagram}/`;
+const IG_DM = CONFIG.instagramDM || `https://ig.me/m/${CONFIG.instagram}`;
+/* Brand mark: logo in a soft circle */
+const logoMark = (size = "") =>
+  `<span class="logo-mark ${size}"><img src="${esc(CONFIG.logo || "images/logo-circle.png")}" alt="" width="64" height="64"></span>`;
+const brandLogo = () =>
+  `<a href="index.html" class="logo" aria-label="${esc(CONFIG.brand)} home">${logoMark()}<span class="logo-word">label<em>Ishaani</em></span></a>`;
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const img = (src, alt = "", attrs = "") =>
   `<img src="${esc(src || PLACEHOLDER)}" alt="${esc(alt)}" loading="lazy" onerror="this.onerror=null;this.src='${PLACEHOLDER}'" ${attrs}>`;
@@ -62,6 +69,19 @@ function orderMessage(p, size = "", color = "") {
     (size ? `\nSize: ${size}` : `\nSize: `) + (color ? `\nColour: ${color}` : "") + `\n${url}`;
 }
 
+/* ---------- Order on Instagram ----------
+   Instagram DMs can't be pre-filled, so we copy the order details
+   to the clipboard and open a DM to @labelishaani to paste them. */
+async function orderOnInstagram(msg) {
+  // start the copy while we still have the tap, then open Instagram
+  const copying = msg && navigator.clipboard ? navigator.clipboard.writeText(msg) : Promise.reject();
+  const win = window.open(IG_DM, "_blank");
+  let copied = false;
+  try { await copying; copied = true; } catch (e) {}
+  toast(copied ? "Order details copied. Paste them in the Instagram chat." : "Opening Instagram. Send us the piece and your size.");
+  if (!win) location.href = IG_DM;
+}
+
 /* ---------- Product card (used on home + shop) ---------- */
 function productCard(p) {
   const on = WISH.includes(p.id), soon = p.status === "soon";
@@ -108,19 +128,21 @@ function renderHeader() {
     { label: "Dresses",      href: "shop.html?cat=dresses", cat: "dresses" },
     { label: "Lehengas",     href: "shop.html?cat=lehengas", cat: "lehengas" },
     { label: "Festive Edit", href: "shop.html?cat=festive", cat: "festive" },
+    { label: "Coming Soon",  href: "shop.html?cat=soon", cat: "soon" },
     { label: "Shop All",     href: "shop.html", cat: "all" },
     { label: "Support",      href: "#footer" },
-    { label: "Order on WhatsApp", href: waUrl(`Hi ${CONFIG.brand}! I have a question.`), ext: true }
+    { label: "Order on WhatsApp", href: waUrl(`Hi ${CONFIG.brand}! I have a question.`), ext: true, cls: "nav-wa" },
+    { label: "Order on Instagram", href: IG_DM, ext: true, cls: "nav-ig" }
   ];
   document.getElementById("site-header").innerHTML = `
   <header class="topbar">
-    <a href="index.html" class="logo" aria-label="${CONFIG.brand} home">label<span>Ishaani</span></a>
+    ${brandLogo()}
     <div class="actions">
       <button id="searchBtn" aria-expanded="false" aria-controls="searchbar"><span class="lbl">Search</span>${ICON.search}</button>
       <a href="#" id="cartLink"><span class="lbl">Cart</span>${ICON.bag}</a>
       <a href="shop.html?cat=wishlist"><span class="lbl">Wishlist</span>
         <span class="badge-wrap">${ICON.heart}<span class="badge" id="wishCount">0</span></span></a>
-      <a href="https://instagram.com/${CONFIG.instagram}" target="_blank" rel="noopener" aria-label="Instagram">${ICON.ig}</a>
+      <a href="${IG_URL}" target="_blank" rel="noopener" aria-label="Instagram">${ICON.ig}</a>
     </div>
   </header>
   <div class="searchbar" id="searchbar">
@@ -130,7 +152,7 @@ function renderHeader() {
   </div>
   <nav class="nav" aria-label="Main"><ul>
     ${navItems.map(n => `<li><a href="${n.href}" ${n.ext ? 'target="_blank" rel="noopener"' : ""}
-      class="${page === "shop.html" && (cat || "all") === n.cat ? "current" : ""}">${n.label}</a></li>`).join("")}
+      class="${n.cls || ""} ${page === "shop.html" && (cat || "all") === n.cat ? "current" : ""}">${n.label}</a></li>`).join("")}
   </ul></nav>`;
 
   // search
@@ -166,7 +188,7 @@ function renderFooter() {
   const shopLinks = CATEGORIES.filter(c => c.id !== "all")
     .map(c => `<li><a href="shop.html?cat=${c.id}">${c.label}</a></li>`).join("");
   const trust = [
-    { icon: "chat",  small: "Easy",      big: "WhatsApp ordering" },
+    { icon: "chat",  small: "Easy",      big: "WhatsApp & Instagram orders" },
     { icon: "hand",  small: "Carefully", big: "Handcrafted" },
     { icon: "truck", small: "Shipping",  big: "Across India" },
     { icon: "india", small: "Proudly",   big: "Made in India" }
@@ -176,13 +198,14 @@ function renderFooter() {
     <div class="wrap">
       <div class="foot">
         <div>
-          <a href="index.html" class="logo">label<span>Ishaani</span></a>
+          ${brandLogo()}
           <p class="foot-about">${esc(CONFIG.about)}</p>
         </div>
         <div><h4>Help</h4><ul>
           <li><a href="${waUrl(`Hi ${CONFIG.brand}! I'd like to track my order.`)}" target="_blank" rel="noopener">Track Order</a></li>
           <li><a href="${waUrl(`Hi ${CONFIG.brand}! I have a question about returns/exchange.`)}" target="_blank" rel="noopener">Return &amp; Exchange</a></li>
           <li><a href="${waUrl(`Hi ${CONFIG.brand}! I have a question about shipping.`)}" target="_blank" rel="noopener">Shipping</a></li>
+          <li><a href="${IG_DM}" target="_blank" rel="noopener">Order on Instagram</a></li>
           <li><a href="${waUrl(`Hi ${CONFIG.brand}!`)}" target="_blank" rel="noopener">Contact Us</a></li>
         </ul></div>
         <div><h4>Shop</h4><ul>${shopLinks}</ul></div>
@@ -190,7 +213,7 @@ function renderFooter() {
           <li><a href="shop.html?cat=wishlist">Wishlist</a></li>
         </ul></div>
         <div><h4>Company</h4><ul>
-          <li><a href="https://instagram.com/${CONFIG.instagram}" target="_blank" rel="noopener">About Us</a></li>
+          <li><a href="${IG_URL}" target="_blank" rel="noopener">About Us</a></li>
           ${CONFIG.email ? `<li><a href="mailto:${CONFIG.email}">${CONFIG.email}</a></li>` : ""}
         </ul></div>
       </div>
@@ -200,15 +223,15 @@ function renderFooter() {
       <div class="foot-bottom">
         <span>© ${new Date().getFullYear()} ${CONFIG.brand}</span>
         <div class="socials">
-          <a href="https://instagram.com/${CONFIG.instagram}" target="_blank" rel="noopener" aria-label="Instagram">${ICON.ig}</a>
+          <a href="${IG_URL}" target="_blank" rel="noopener" aria-label="Instagram">${ICON.ig}</a>
           <a href="${waUrl(`Hi ${CONFIG.brand}!`)}" target="_blank" rel="noopener" aria-label="WhatsApp">${ICON.wa}</a>
         </div>
-        <span>@${CONFIG.instagram}</span>
+        <a href="${IG_URL}" target="_blank" rel="noopener">@${CONFIG.instagram}</a>
       </div>
     </div>
   </footer>
-  <a class="float-ig" href="https://instagram.com/${CONFIG.instagram}" target="_blank" rel="noopener">${ICON.ig}<span>Follow us</span></a>
-  <a class="float-wa" href="${waUrl(`Hi ${CONFIG.brand}!`)}" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" style="color:#fff">${ICON.wa.replace('width="22" height="22"', 'width="30" height="30"')}</a>`;
+  <a class="float-ig" href="${IG_DM}" target="_blank" rel="noopener" aria-label="Order on Instagram">${ICON.ig}<span>Order on Instagram</span></a>
+  <a class="float-wa" href="${waUrl(`Hi ${CONFIG.brand}!`)}" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">${ICON.wa.replace('width="22" height="22"', 'width="30" height="30"')}</a>`;
 }
 
 /* ---------- Global click handling for wishlist hearts ---------- */

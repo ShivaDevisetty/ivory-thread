@@ -7,8 +7,11 @@ const CONFIG = {
   brand: "Label Ishaani",
   whatsapp: "917989313132",           // country code + number, no "+" or spaces
   instagram: "labelishaani",
+  instagramUrl: "https://www.instagram.com/labelishaani/",   // profile link
+  instagramDM: "https://ig.me/m/labelishaani",              // opens a DM to order
+  logo: "images/logo-circle.png",
   email: "",                          // optional, e.g. "hello@labelishaani.com"
-  about: "Handcrafted Indian wear, made in small batches. Every order is placed and confirmed personally on WhatsApp."
+  about: "Handcrafted Indian wear, made in small batches. Order on WhatsApp or Instagram and we confirm every piece with you personally."
 };
 
 /* Categories used by the pills, nav and shop page filter */
@@ -18,7 +21,8 @@ const CATEGORIES = [
   { id: "sets",     label: "Co-ord Sets" },
   { id: "dresses",  label: "Dresses" },
   { id: "lehengas", label: "Lehengas" },
-  { id: "festive",  label: "Festive" }
+  { id: "festive",  label: "Festive" },
+  { id: "soon",     label: "Coming Soon" }
 ];
 
 /* ---------------------------------------------------------
@@ -29,6 +33,7 @@ const CATEGORIES = [
    colors  : other colour versions — link to another product id
    --------------------------------------------------------- */
 const PRODUCTS = [
+  /* ---------------- AVAILABLE NOW ---------------- */
   {
     id: "ivory-peplum-palazzo-set",
     name: "Ivory Embroidered Peplum & Palazzo Set",
@@ -39,16 +44,17 @@ const PRODUCTS = [
     cats: ["new", "sets", "festive"],
     images: [
       "images/products/ivory-peplum-1.jpg",
-      "images/products/ivory-peplum-2.jpg",
-      "images/products/ivory-peplum-3.jpg"
+      "images/products/ivory-peplum-2.jpg"
     ],
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: [],
-    description: "An ivory peplum top with delicate embroidery, paired with flowing palazzos. Easy to wear for festive days, pujas and family functions.",
+    description: "A sleeveless ivory peplum top with indigo floral embroidery around the neckline and down a front slit panel, finished with a tie cord and tassel. Paired with flowing navy wide-leg palazzos. Easy to wear for festive days, pujas and family functions.",
     specs: {
-      "Color": "Ivory",
-      "Work": "Embroidered",
+      "Color": "Ivory & Navy",
+      "Work": "Floral embroidery",
       "Includes": "Peplum top + palazzo",
+      "Neckline": "Round",
+      "Sleeves": "Sleeveless",
       "Stitch": "Ready to wear",
       "Fabric": "Add fabric",
       "Occasion": "Festive, Puja, Day function",
@@ -66,23 +72,25 @@ const PRODUCTS = [
     cats: ["new", "dresses"],
     images: [
       "images/products/ivory-dress-1.jpg",
-      "images/products/ivory-dress-2.jpg",
-      "images/products/ivory-dress-3.jpg"
+      "images/products/ivory-dress-2.jpg"
     ],
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: [],
-    description: "A fitted bodice with an embroidered flare skirt in soft ivory. Pairs well with juttis for a mehendi or with heels for a dinner out.",
+    description: "A fitted ivory bodice with a trail of blue leaf embroidery at the neckline and along an open front panel, revealing a pleated blue skirt underneath. Tie cord with tassel at the waist. Pairs well with juttis for a mehendi or with heels for a dinner out.",
     specs: {
-      "Color": "Ivory",
-      "Work": "Embroidered",
+      "Color": "Ivory & Blue",
+      "Work": "Leaf vine embroidery",
       "Length": "Mini",
       "Fit Type": "Fit and Flare",
+      "Sleeves": "Sleeveless",
       "Stitch": "Ready to wear",
       "Fabric": "Add fabric",
       "Care Instructions": "Dry clean recommended"
     },
     otherDetails: "Colours may vary slightly due to lighting and screen settings."
   },
+
+  /* ---------------- COMING SOON ---------------- */
   {
     id: "plum-emerald-lehenga",
     name: "Plum & Emerald Pleated Lehenga Set",
@@ -90,17 +98,45 @@ const PRODUCTS = [
     sku: "LI-003",
     status: "soon",
     bestseller: false,
-    cats: ["lehengas", "festive"],
+    cats: ["lehengas", "festive", "soon"],
     images: [
       "images/products/plum-lehenga-1.jpg",
       "images/products/plum-lehenga-2.jpg"
     ],
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: [],
-    description: "A pleated lehenga set in rich plum and emerald. Launching soon — message us on WhatsApp to be told first.",
+    description: "A draped plum crop blouse with a mandarin collar and keyhole neck, over a fully pleated emerald lehenga with a plum border of gold motifs and beaded latkans. Launching soon. Message us to be told first.",
     specs: {
       "Color": "Plum & Emerald",
       "Style": "Pleated lehenga set",
+      "Includes": "Blouse + lehenga",
+      "Details": "Beaded latkans, motif border",
+      "Stitch": "Ready to wear",
+      "Fabric": "Add fabric"
+    },
+    otherDetails: ""
+  },
+  {
+    id: "black-betta-maxi-dress",
+    name: "Black Crimson Betta Mock-Neck Maxi Dress",
+    price: null,                         // set a price when it launches
+    sku: "LI-004",
+    status: "soon",
+    bestseller: false,
+    cats: ["dresses", "soon"],
+    images: [
+      "images/products/black-betta-1.jpg",
+      "images/products/black-betta-2.jpg"
+    ],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    colors: [],
+    description: "A black mock-neck bodice with short sleeves and a striking crimson betta fish across the front, falling into a gathered, textured black maxi skirt. Launching soon. Message us to be told first.",
+    specs: {
+      "Color": "Black & Crimson",
+      "Work": "Betta fish motif",
+      "Length": "Maxi",
+      "Neckline": "Mock neck",
+      "Sleeves": "Short",
       "Stitch": "Ready to wear",
       "Fabric": "Add fabric"
     },
@@ -113,10 +149,10 @@ const PRODUCTS = [
    cat : which category the tile opens on shop.html
    --------------------------------------------------------- */
 const COLLECTIONS = [
-  { small: "Best",    big: "Sellers",  cat: "all",      image: "images/collections/best-sellers.jpg" },
-  { small: "New",     big: "Arrivals", cat: "new",      image: "images/collections/new-arrivals.jpg" },
-  { small: "Festive", big: "Edit",     cat: "festive",  image: "images/collections/festive.jpg" },
-  { small: "Co-ord",  big: "Sets",     cat: "sets",     image: "images/collections/coord-sets.jpg" }
+  { small: "Best",    big: "Sellers",  cat: "all",      image: "images/products/ivory-peplum-1.jpg" },
+  { small: "New",     big: "Arrivals", cat: "new",      image: "images/products/ivory-dress-1.jpg" },
+  { small: "Festive", big: "Edit",     cat: "festive",  image: "images/products/plum-lehenga-1.jpg" },
+  { small: "Coming",  big: "Soon",     cat: "soon",     image: "images/products/black-betta-1.jpg" }
 ];
 
 /* ---------------------------------------------------------
@@ -150,7 +186,7 @@ const SIZE_CHART = [
 
 /* Perks shown on the product page and footer — edit freely */
 const PERKS = [
-  { icon: "chat",  title: "Order on WhatsApp", sub: "Confirmed personally" },
+  { icon: "chat",  title: "WhatsApp or Instagram", sub: "Confirmed personally" },
   { icon: "hand",  title: "Handcrafted",       sub: "Small-batch pieces" },
   { icon: "india", title: "Made in India",     sub: "Designed with love" }
 ];

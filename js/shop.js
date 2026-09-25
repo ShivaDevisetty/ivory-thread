@@ -26,8 +26,8 @@
 
     grid.innerHTML = list.length ? list.map(productCard).join("")
       : cat === "wishlist"
-        ? `<p class="empty">Your wishlist is empty. Tap the heart on any piece to save it here.</p>`
-        : `<p class="empty">New pieces for this category are on the way. Follow @${CONFIG.instagram} for the drop.</p>`;
+        ? `<div class="empty">${logoMark("lg")}<p>Your wishlist is empty. Tap the heart on any piece to save it here.</p></div>`
+        : `<div class="empty">${logoMark("lg")}<p>New pieces for this category are on the way. Follow <a href="${IG_URL}" target="_blank" rel="noopener">@${CONFIG.instagram}</a> for the drop.</p></div>`;
   }
 
   pills.onclick = e => {

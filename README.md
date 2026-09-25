@@ -1,7 +1,7 @@
 # Label Ishaani — website
 
 A free static shop site for **Label Ishaani** (Instagram: @labelishaani).
-No backend and no payment gateway: every order goes to WhatsApp.
+No backend and no payment gateway: every order goes to WhatsApp or an Instagram DM.
 
 ## Pages
 | File | What it is |
@@ -13,6 +13,9 @@ No backend and no payment gateway: every order goes to WhatsApp.
 
 ## Editing — you mostly only touch `js/data.js`
 - **WhatsApp number**: `CONFIG.whatsapp` (e.g. `919876543210`)
+- **Instagram**: `CONFIG.instagramUrl` (profile) and `CONFIG.instagramDM` (`https://ig.me/m/labelishaani`, opens a DM). Instagram can't pre-fill a DM, so "Order on Instagram" copies the order details and the customer pastes them.
+- **Logo**: `images/logo-circle.png` (header, footer, hero, empty pages), `images/favicon.png`, `images/apple-touch-icon.png`
+- **Available vs coming soon**: set `status` to `"available"` or `"soon"`. Coming-soon pieces also carry the `"soon"` category so they show under Coming Soon.
 - **Products**: add/edit in `PRODUCTS`. Product pages are generated automatically.
 - **Collections tiles**, **customer reviews**, **size chart**, **perks**: same file.
 - **Colours / fonts**: top of `css/style.css` (`:root`).
@@ -22,9 +25,8 @@ No backend and no payment gateway: every order goes to WhatsApp.
 
 ## Images (put these in the folders)
 ```
-images/hero/hero-1.png, hero-2.png, hero-3.png     cut-out model photos (transparent PNG looks best)
-images/products/ivory-peplum-1.jpg ...               names must match data.js
-images/collections/best-sellers.jpg ...              portrait (5:7) photos
+images/hero/<name>-full.jpg                          full-length photos used in the hero slider
+images/products/<name>-1.jpg, -2.jpg                 3:4 product photo + close-up detail, names must match data.js
 images/reviews/review-1.jpg ...                      customer photos
 ```
 Any missing image shows a neutral placeholder, so the site never looks broken.
