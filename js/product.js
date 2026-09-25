@@ -50,7 +50,7 @@
         <h1>${esc(p.name)}</h1>
         <button id="shareBtn" aria-label="Share this product">${ICON.share}</button>
       </div>
-      <div class="p-price">${fmt(p.price)}</div>
+      <div class="p-price">${fmt(p.price)}${p.price ? `<small class="ship-note"> + Shipping charges</small>` : ""}</div>
       <div class="meta-row"><span>${p.price ? "Inclusive of all taxes" : ""}</span><span>SKU: <b>${esc(p.sku)}</b></span></div>
 
       <div class="notice">${soon ? "Launching soon. Message us on WhatsApp or Instagram to be told first." : "Order on WhatsApp or Instagram. We'll confirm size, delivery and payment with you."}</div>

@@ -98,7 +98,7 @@ function productCard(p) {
     <a class="card-body" href="${link}">
       ${chipCat ? `<span class="chip">${esc(chipCat.label)}</span>` : ""}
       <span class="card-name">${esc(p.name)}</span>
-      <span class="card-price">${fmt(p.price)}</span>
+      <span class="card-price">${fmt(p.price)}${p.price ? `<small class="ship-note"> + Shipping charges</small>` : ""}</span>
     </a>
   </article>`;
 }

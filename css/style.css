@@ -415,3 +415,5 @@ footer li a:hover{color:var(--copper)}
 .story-lines p{font-size:16.5px;color:var(--muted);line-height:1.9}
 .story-dot{width:6px;height:6px;border-radius:50%;background:var(--copper);margin:22px 0}
 .story-sign{font-family:var(--script);font-size:34px;color:var(--copper);line-height:1.2}
+
+.ship-note{font-size:11px;font-weight:400;color:var(--muted);white-space:nowrap}
