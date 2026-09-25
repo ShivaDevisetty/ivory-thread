@@ -66,6 +66,19 @@ document.getElementById("collections").innerHTML = COLLECTIONS.map(c => `
     <span class="coll-title"><small>${esc(c.small)}</small><b>${esc(c.big)}</b></span>
   </a>`).join("");
 
+/* ---------- Brand story ---------- */
+(function story() {
+  const section = document.getElementById("storySection");
+  if (typeof BRAND_STORY === "undefined") { section.remove(); return; }
+  section.innerHTML = `<div class="wrap"><div class="story-card">
+    ${logoMark("lg")}
+    <div class="story-lead">${BRAND_STORY.lead.map(l => `<p>${esc(l)}</p>`).join("")}</div>
+    <div class="story-lines">${BRAND_STORY.lines.map(l => `<p>${esc(l)}</p>`).join("")}</div>
+    <span class="story-dot" aria-hidden="true"></span>
+    <p class="story-sign">${esc(BRAND_STORY.sign)}</p>
+  </div></div>`;
+})();
+
 /* ---------- Reviews ---------- */
 (function reviews() {
   const section = document.getElementById("reviewsSection");

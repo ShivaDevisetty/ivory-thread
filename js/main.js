@@ -134,7 +134,16 @@ function renderHeader() {
     { label: "Order on WhatsApp", href: waUrl(`Hi ${CONFIG.brand}! I have a question.`), ext: true, cls: "nav-wa" },
     { label: "Order on Instagram", href: IG_DM, ext: true, cls: "nav-ig" }
   ];
-  document.getElementById("site-header").innerHTML = `
+  const msgs = (CONFIG.announcements || []).filter(Boolean);
+  const ticker = msgs.length ? (() => {
+    const item = t => `<span class="ticker-item">${esc(t)}</span><span class="ticker-sep" aria-hidden="true">✦</span>`;
+    const set = Array.from({ length: Math.max(1, Math.ceil(8 / msgs.length)) }, () => msgs.map(item).join("")).join("");
+    return `<a class="ticker" href="${IG_DM}" target="_blank" rel="noopener" aria-label="Customization available. Message us on Instagram">
+    <span class="sr-only">Message us</span>
+    <span class="ticker-track"><span class="ticker-set">${set}</span><span class="ticker-set" aria-hidden="true">${set}</span></span>
+  </a>`;
+  })() : "";
+  document.getElementById("site-header").innerHTML = ticker + `
   <header class="topbar">
     ${brandLogo()}
     <div class="actions">
@@ -199,7 +208,7 @@ function renderFooter() {
       <div class="foot">
         <div>
           ${brandLogo()}
-          <p class="foot-about">${esc(CONFIG.about)}</p>
+          <p class="foot-about">${esc(BRAND_STORY.lead[1])} Handcrafted in small batches. Order on WhatsApp or Instagram.</p>
         </div>
         <div><h4>Help</h4><ul>
           <li><a href="${waUrl(`Hi ${CONFIG.brand}! I'd like to track my order.`)}" target="_blank" rel="noopener">Track Order</a></li>

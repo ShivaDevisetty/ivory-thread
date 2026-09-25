@@ -64,7 +64,7 @@ button,select{cursor:pointer;border:none;background:none}
 
 /* ---------- Header ---------- */
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 32px;
-  padding-top:calc(14px + env(safe-area-inset-top,0px));background:var(--surface)}
+  background:var(--surface)}
 .actions{display:flex;align-items:center;gap:14px;font-size:13px}
 .actions > a,.actions > button{display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:var(--r-pill);
   background:var(--surface);box-shadow:var(--raise-xs);transition:box-shadow .2s}
@@ -355,7 +355,7 @@ footer li a:hover{color:var(--copper)}
 }
 @media (max-width:900px){
   .wrap{padding:0 16px}
-  .topbar{padding:12px 16px;padding-top:calc(12px + env(safe-area-inset-top,0px))}
+  .topbar{padding:12px 16px}
   .searchbar{padding:4px 16px 14px}
   .actions .lbl{display:none}
   .actions{gap:10px}
@@ -391,3 +391,27 @@ footer li a:hover{color:var(--copper)}
   .slide-model.duo img:last-child{display:none}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* ---------- Announcement ticker ---------- */
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ticker{display:block;background:var(--copper);color:#fff;font-size:13px;font-weight:500;overflow:hidden;
+  padding-top:env(safe-area-inset-top,0px)}
+.ticker-track{display:flex;width:max-content;height:36px;align-items:center;animation:ticker 25s linear infinite}
+.ticker-set{display:flex;align-items:center;flex-shrink:0}
+.ticker-item{padding:0 18px;white-space:nowrap}
+.ticker-sep{font-size:11px;opacity:.9}
+.ticker:hover .ticker-track,.ticker:focus-visible .ticker-track{animation-play-state:paused}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){
+  .ticker-track{animation:none;width:100%;justify-content:center}
+  .ticker-set{display:block}.ticker-set+.ticker-set,.ticker-sep,.ticker-item~.ticker-item{display:none}
+}
+
+/* ---------- Brand story ---------- */
+.story-card{max-width:760px;margin:0 auto;background:var(--surface);box-shadow:var(--raise);border-radius:28px;
+  padding:clamp(28px,5vw,56px) clamp(20px,5vw,56px);text-align:center;display:flex;flex-direction:column;align-items:center}
+.story-lead{margin:22px 0 18px}
+.story-lead p{font-size:clamp(20px,2.4vw,28px);font-weight:600;color:var(--ink);line-height:1.35}
+.story-lines p{font-size:16.5px;color:var(--muted);line-height:1.9}
+.story-dot{width:6px;height:6px;border-radius:50%;background:var(--copper);margin:22px 0}
+.story-sign{font-family:var(--script);font-size:34px;color:var(--copper);line-height:1.2}

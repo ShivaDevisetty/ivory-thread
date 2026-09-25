@@ -11,6 +11,7 @@ const CONFIG = {
   instagramDM: "https://ig.me/m/labelishaani",              // opens a DM to order
   logo: "images/logo-circle.png",
   email: "",                          // optional, e.g. "hello@labelishaani.com"
+  announcements: ["Customization available!"],
   about: "Handcrafted Indian wear, made in small batches. Order on WhatsApp or Instagram and we confirm every piece with you personally."
 };
 
@@ -37,7 +38,7 @@ const PRODUCTS = [
   {
     id: "ivory-peplum-palazzo-set",
     name: "Ivory Embroidered Peplum & Palazzo Set",
-    price: 2100,
+    price: 2900,
     sku: "LI-001",
     status: "available",
     bestseller: true,
@@ -65,7 +66,7 @@ const PRODUCTS = [
   {
     id: "ivory-fit-flare-dress",
     name: "Ivory Embroidered Fit & Flare Mini Dress",
-    price: 2100,
+    price: 2900,
     sku: "LI-002",
     status: "available",
     bestseller: false,
@@ -190,3 +191,16 @@ const PERKS = [
   { icon: "hand",  title: "Handcrafted",       sub: "Small-batch pieces" },
   { icon: "india", title: "Made in India",     sub: "Designed with love" }
 ];
+
+/* Brand story shown on the home page */
+const BRAND_STORY = {
+  lead: ["We didn't just want to create clothes.", "We wanted to create something that feels like home."],
+  lines: [
+    "for the days you want to try something new,",
+    "for the moments you rediscover your confidence,",
+    "for stepping into a version of yourself you've always imagined,",
+    "for dressing the way you truly feel,",
+    "for choosing yourself — effortlessly, unapologetically."
+  ],
+  sign: "this is where label ishaani begins. ✨"
+};
