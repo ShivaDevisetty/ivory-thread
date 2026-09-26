@@ -12,7 +12,12 @@ const CONFIG = {
   logo: "images/logo-circle.png",
   website: "https://labelishaani.dpdns.org/",
   email: "",                          // optional, e.g. "hello@labelishaani.com"
-  announcements: ["Customization available!"],
+  announcements: [
+    "✨ Customization available — DM us!",
+    "📲 Order on WhatsApp or Instagram",
+    "🌸 New: Ivory Embroidered Collection",
+    "👗 Coming soon: Plum & Emerald Lehenga"
+  ],
   about: "Handcrafted Indian wear, made in small batches. Order on WhatsApp or Instagram and we confirm every piece with you personally."
 };
 
