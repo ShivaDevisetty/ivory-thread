@@ -10,10 +10,7 @@ const CONFIG = {
   instagramUrl: "https://www.instagram.com/labelishaani/",   // profile link
   instagramDM: "https://ig.me/m/labelishaani",              // opens a DM to order
   logo: "images/logo-circle.png",
-  owner: "Pavani Kambampati",
-  phoneDisplay: "+91 79893 13132",
   website: "https://labelishaani.dpdns.org/",
-  address: "LB Nagar, Hyderabad",
   email: "",                          // optional, e.g. "hello@labelishaani.com"
   announcements: ["Customization available!"],
   about: "Handcrafted Indian wear, made in small batches. Order on WhatsApp or Instagram and we confirm every piece with you personally."

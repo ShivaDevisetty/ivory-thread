@@ -212,7 +212,6 @@ function renderFooter() {
         </div>
         <div><h4>Help</h4><ul>
           <li><a href="${waUrl(`Hi ${CONFIG.brand}! I'd like to track my order.`)}" target="_blank" rel="noopener">Track Order</a></li>
-          <li><a href="${waUrl(`Hi ${CONFIG.brand}! I have a question about returns/exchange.`)}" target="_blank" rel="noopener">Return &amp; Exchange</a></li>
           <li><a href="${waUrl(`Hi ${CONFIG.brand}! I have a question about shipping.`)}" target="_blank" rel="noopener">Shipping</a></li>
           <li><a href="${IG_DM}" target="_blank" rel="noopener">Order on Instagram</a></li>
           <li><a href="${waUrl(`Hi ${CONFIG.brand}!`)}" target="_blank" rel="noopener">Contact Us</a></li>
@@ -223,9 +222,6 @@ function renderFooter() {
         </ul></div>
         <div><h4>Company</h4><ul>
           <li><a href="${IG_URL}" target="_blank" rel="noopener">About Us</a></li>
-          ${CONFIG.owner ? `<li>${esc(CONFIG.owner)}</li>` : ""}
-          ${CONFIG.phoneDisplay ? `<li><a href="tel:+${CONFIG.whatsapp}">${esc(CONFIG.phoneDisplay)}</a></li>` : ""}
-          ${CONFIG.address ? `<li>${esc(CONFIG.address)}</li>` : ""}
           ${CONFIG.website ? `<li><a href="${esc(CONFIG.website)}">${esc(CONFIG.website.replace(/^https?:\/\//, "").replace(/\/$/, ""))}</a></li>` : ""}
           ${CONFIG.email ? `<li><a href="mailto:${CONFIG.email}">${CONFIG.email}</a></li>` : ""}
         </ul></div>
